@@ -5,24 +5,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
-// This is going to have to be changed after we've replaced
-// the temp SQLite db with our actual PostgreSQL db.
 builder.Services.AddDbContext<TodoContext>(options =>
-    options.UseSqlite(
+    options.UseNpgsql(
         builder.Configuration.GetConnectionString("TodoContext")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseAuthorization();
+
 app.MapControllers();
 
-app.UseHttpsRedirection();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
