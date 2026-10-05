@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+
+# Local SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# User-specific / IDE files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# macOS
+.DS_Store

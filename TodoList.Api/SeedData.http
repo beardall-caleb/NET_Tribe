@@ -1,0 +1,105 @@
+@host = https://net-tribe-8rab.onrender.com
+
+### Work task
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Prepare quarterly report",
+  "summary": "Review project metrics and prepare the quarterly status report.",
+  "category": 1,
+  "dueDate": "2026-10-10",
+  "priority": 8,
+  "isCompleted": false
+}
+
+### Home / Chores
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Clean the garage",
+  "summary": "Organize storage shelves and take unused items to donation.",
+  "category": 2,
+  "dueDate": "2026-10-12",
+  "priority": 4,
+  "isCompleted": false
+}
+
+### Church Calling
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Prepare Sunday lesson",
+  "summary": "Review the lesson material and prepare discussion questions.",
+  "category": 3,
+  "dueDate": "2026-10-11",
+  "priority": 7,
+  "isCompleted": false
+}
+
+### School
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Complete group project",
+  "summary": "Finish the task management application and prepare the final walkthrough.",
+  "category": 4,
+  "dueDate": "2026-10-18",
+  "priority": 10,
+  "isCompleted": false
+}
+
+### Overdue task
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Submit project progress report",
+  "summary": "Submit the weekly team project progress report.",
+  "category": 4,
+  "dueDate": "2026-10-02",
+  "priority": 9,
+  "isCompleted": false
+}
+
+### Completed task
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Set up PostgreSQL database",
+  "summary": "Create and configure the Render PostgreSQL database.",
+  "category": 4,
+  "dueDate": "2026-10-01",
+  "priority": 8,
+  "isCompleted": true
+}
+
+### Another completed task
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Configure Render web service",
+  "summary": "Deploy the ASP.NET Core API and connect it to PostgreSQL.",
+  "category": 1,
+  "dueDate": "2026-10-03",
+  "priority": 9,
+  "isCompleted": true
+}
+
+### Low-priority chore
+POST {{host}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Organize desk",
+  "summary": "Sort paperwork and clean the home office workspace.",
+  "category": 2,
+  "dueDate": "2026-10-20",
+  "priority": 2,
+  "isCompleted": false
+}
