@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<header class="page-header">
+    <div>
+        <h1>Welcome 👋</h1>
+        <p class="muted">Here's what's on your plate today.</p>
+    </div>
+</header>
+
+@if (TempData["SuccessMessage"] is string message)
+{
+    <div class="alert-success">@message</div>
+}
+
+<section class="section-header">
+    <h2>My Tasks</h2>
+    <a class="btn-primary" asp-controller="Home" asp-action="AddTask">+ Add Task</a>
+</section>
