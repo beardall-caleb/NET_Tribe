@@ -1,6 +1,8 @@
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.Api.Data;
 using TodoList.Api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TodoList.Api.Controllers;
 
@@ -13,9 +15,15 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var tasks = await _context.Tasks
+            .OrderBy(t => t.IsCompleted)
+            .ThenBy(t => t.DueDate)
+            .ThenByDescending(t => t.Priority)
+            .ToListAsync();
+
+        return View(tasks);
     }
 
     [HttpGet]
