@@ -1,0 +1,63 @@
+@model TaskItem
+
+@{
+    ViewData["Title"] = "Add Task";
+}
+
+<header class="page-header">
+    <div>
+        <h1>Add Task</h1>
+        <p class="muted">Fill in the details for your new task.</p>
+    </div>
+</header>
+
+<form class="card form" asp-controller="Home" asp-action="AddTask" method="post">
+    <div asp-validation-summary="ModelOnly" class="field-error"></div>
+
+    <div class="field">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" placeholder="e.g. Complete CSE 325 Assignment" />
+        <span asp-validation-for="Title" class="field-error"></span>
+    </div>
+
+    <div class="field">
+        <label asp-for="Summary"></label>
+        <textarea asp-for="Summary" rows="3" placeholder="Short description of the task"></textarea>
+        <span asp-validation-for="Summary" class="field-error"></span>
+    </div>
+
+    <div class="field-row">
+        <div class="field">
+            <label asp-for="Category"></label>
+            <select asp-for="Category">
+                <option value="">-- Select a category --</option>
+                <option value="@((int)TaskCategory.Work)">Work</option>
+                <option value="@((int)TaskCategory.HomeChores)">Home / Chores</option>
+                <option value="@((int)TaskCategory.ChurchCalling)">Church Calling</option>
+                <option value="@((int)TaskCategory.School)">School</option>
+            </select>
+            <span asp-validation-for="Category" class="field-error"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="DueDate"></label>
+            <input asp-for="DueDate" type="date" />
+            <span asp-validation-for="DueDate" class="field-error"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="Priority">Priority (1–10)</label>
+            <input asp-for="Priority" type="number" min="1" max="10" />
+            <span asp-validation-for="Priority" class="field-error"></span>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <a class="btn-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+        <button type="submit" class="btn-primary">Save Task</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,68 @@
+@model IEnumerable<TaskItem>
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<header class="page-header">
+    <div>
+        <h1>Welcome 👋</h1>
+        <p class="muted">Here's what's on your plate today.</p>
+    </div>
+</header>
+
+@if (!Model.Any())
+{
+    <div class="card">
+        <p class="muted">You don't have any tasks yet. Add a task to get started.</p>
+    </div>
+}
+else
+{
+    @foreach (var task in Model)
+    {
+        var categoryName = task.Category switch
+        {
+            TaskCategory.Work => "Work",
+            TaskCategory.HomeChores => "Home / Chores",
+            TaskCategory.ChurchCalling => "Church Calling",
+            TaskCategory.School => "School",
+            _ => "Unknown"
+        };
+
+        var isOverdue =
+            !task.IsCompleted &&
+            task.DueDate.HasValue &&
+            task.DueDate.Value < DateOnly.FromDateTime(DateTime.Today);
+
+        <article class="card">
+            <h3>@task.Title</h3>
+
+            <p>@task.Summary</p>
+
+            <p class="muted">
+                Category: @categoryName
+            </p>
+
+            <p class="muted">
+                Due: @(task.DueDate?.ToString("MMM d, yyyy") ?? "No due date")
+            </p>
+
+            <p class="muted">
+                Priority: @task.Priority / 10
+            </p>
+
+            @if (task.IsCompleted)
+            {
+                <p><strong>Completed</strong></p>
+            }
+            else if (isOverdue)
+            {
+                <p class="field-error"><strong>Overdue</strong></p>
+            }
+            else
+            {
+                <p><strong>Incomplete</strong></p>
+            }
+        </article>
+    }
+}

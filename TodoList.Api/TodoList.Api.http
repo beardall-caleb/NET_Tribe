@@ -40,5 +40,5 @@ Content-Type: application/json
 }
 
 ### Delete task
-DELETE {{TodoListApi_HostAddress}}/api/tasks/1
+DELETE {{TodoListApi_HostAddress}}/api/tasks/14
 
